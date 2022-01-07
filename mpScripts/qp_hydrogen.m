@@ -11,7 +11,7 @@ clc
 disp('   ');
 disp('Solution of the [1D] Radial Schrodinger Equation for hydrogen like atoms')
 disp('    ')
-r_max = input('max radial distance (default 10e-10 m), r_max =  ');
+r_max = input('max radial distance (default 20e-10 m), r_max =  ');
 disp('   ');
 L = input('orbital quantum number (default 0), L =  ');
 disp('   ');
@@ -377,7 +377,13 @@ probcloud = probcloud./max(max(probcloud));
 probS = probcloud .^0.5;
 
 %%
-s = sprintf('n = %.0g    l = %.0g   m_l = %.0g     E_B = %0.4g  eV',pqn,L,m_L,EB);
+radial_nodes = pqn-(L+1);
+if radial_nodes>0
+radial_nodes;
+else
+radial_nodes=0;
+end
+s = sprintf('n = %.0g    l = %.0g   m_l = %.0g     E_B = %0.4g  eV     Node_radial = %.0g',pqn,L,m_L,EB,radial_nodes);
 
 figure(82);
   set(gcf,'Name','Cloud1','NumberTitle','off')
